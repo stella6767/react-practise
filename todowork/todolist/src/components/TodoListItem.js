@@ -7,23 +7,31 @@ import {
 import './TodoListItem.scss';
 import cn from 'classnames'; //classnames사용 명시
 
-const TodoListItem = ({ todo, onRemove, onToggle }) => {
+const TodoListItem = ({ todo, onRemove, onToggle, style }) => {
   // 구조분할 할당
   const { id, text, checked } = todo;
 
   return (
-    <div className="TodoListItem">
-      {/* checked가 true 일 때, 'checkbox'checked'  false면 checkbox*/}
-      <div className={cn('checkbox', { checked })} onClick={() => onToggle(id)}>
-        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-        <div className="text">{text}</div>
-      </div>
+    <div className="TodoListItem-virtualized" style={style}>
+      <div className="TodoListItem">
+        {/* checked가 true 일 때, 'checkbox'checked'  false면 checkbox*/}
+        <div
+          className={cn('checkbox', { checked })}
+          onClick={() => onToggle(id)}
+        >
+          {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+          <div className="text">{text}</div>
+        </div>
 
-      <div className="remove" onClick={() => onRemove(id)}>
-        <MdRemoveCircleOutline />
+        <div className="remove" onClick={() => onRemove(id)}>
+          <MdRemoveCircleOutline />
+        </div>
       </div>
     </div>
   );
 };
 
-export default TodoListItem;
+export default React.memo(
+  TodoListItem,
+  (prevProps, nextProps) => prevProps.todo === nextProps.todo,
+);
