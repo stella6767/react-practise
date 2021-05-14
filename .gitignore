@@ -4,11 +4,17 @@
 /todowork/todolist/.pnp
 .pnp.js
 
+/immer-ex1/immer-tutorial/node_modules
+/immer-ex1/immer-tutorial/.pnp
+
+
 # testing
 /todowork/todolist/coverage
+/immer-ex1/immer-tutorial/coverage
 
 # production
 /todowork/todolist/build
+/immer-ex1/immer-tutorial/build
 
 # misc
 .DS_Store
